@@ -264,9 +264,10 @@ Mapfile::print_input_section(Relobj* relobj, unsigned int shndx)
   snprintf(sizebuf, sizeof sizebuf, "0x%llx",
 	   static_cast<unsigned long long>(size));
 
-  fprintf(this->map_file_, "0x%0*llx %10s %s\n",
+  fprintf(this->map_file_, "0x%0*llx %10s 0x%lx %s\n",
 	  parameters->target().get_size() / 4,
 	  static_cast<unsigned long long>(addr), sizebuf,
+	  (unsigned long) relobj->section_addralign(shndx),
 	  relobj->name().c_str());
 
   if (os != NULL)
